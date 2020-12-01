@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Lab35.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{1D3EEBD1-3EF6-4AF8-A8A1-5C7E88835B73}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Lab35.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\Lab35Editor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{0D916383-F609-4A13-95A2-E738E12E83A2}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Lab35">
+      <UniqueIdentifier>{EC276FB5-D5C3-4A97-AC5E-1FD42A89A1B6}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Lab35\EmptyGamemode.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\EmptyGamemode.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Lab35\FlyCam.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\FlyCam.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Lab35\GridManager.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\GridManager.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\Lab35\Lab35.Build.cs">
+      <Filter>Source\Lab35</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Lab35\Lab35.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\Lab35.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Lab35\Lab35GameModeBase.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\Lab35GameModeBase.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Lab35\Traveler.cpp">
+      <Filter>Source\Lab35</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Lab35\Traveler.h">
+      <Filter>Source\Lab35</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Lab35\tinyxml2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Lab35\tinyxml2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
