@@ -20,10 +20,11 @@ void AGridManager::SetSettings()
 	FString dir = FPaths::ConvertRelativePathToFull("../../../");
 	FXmlFile* file = new FXmlFile();
 	file->LoadFile(dir + "settings.xml");
-	if (file != nullptr) {
+	if (file != nullptr)
+	{
 		FXmlNode* RootNode = file->GetRootNode();
-		if (RootNode != nullptr) {
-
+		if (RootNode != nullptr)
+		{
 			FXmlNode* graphPointsCountX = RootNode->FindChildNode("graphPointsCountX");
 			FXmlNode* graphPointsCountY = RootNode->FindChildNode("graphPointsCountY");
 			FXmlNode* objectsCount = RootNode->FindChildNode("objectsCount");
@@ -36,7 +37,7 @@ void AGridManager::SetSettings()
 				GridW = FCString::Atoi(*graphPointsCountX->GetContent());
 
 			if (graphPointsCountY != nullptr)
-				GridW = FCString::Atoi(*graphPointsCountY->GetContent());
+				GridH = FCString::Atoi(*graphPointsCountY->GetContent());
 
 			if (objectsCount != nullptr)
 				TravelersCount = FCString::Atoi(*objectsCount->GetContent());
@@ -51,6 +52,11 @@ void AGridManager::SetSettings()
 			if (offsetZ != nullptr)
 				NodeRZ = FCString::Atof(*offsetZ->GetContent());
 
+			int MaxTravelers = GridW * GridH;
+			if (TravelersCount > MaxTravelers)
+			{
+				TravelersCount = MaxTravelers;
+			}
 		}
 	}
 }
@@ -123,14 +129,23 @@ void AGridManager::GetRoute(class ATraveler* trav, TArray<FVector>& Route) {
 }
 
 void AGridManager::CreateTravelers() {
+	TArray<int> NodesEmpty;
+	for (int i = 0; i < GNodes.Num(); i++)
+		NodesEmpty.Add(i);
+
 	for (int i = 0; i < TravelersCount; i++) {
-		int StartNode = FMath::RandRange(0, GNodes.Num() - 1);
+		int node = FMath::RandRange(0, NodesEmpty.Num() - 1);
+		int StartNode = NodesEmpty[node];
 		int EndNode = StartNode;
 		ATraveler* trav = GetWorld()->SpawnActor<ATraveler>(GNodes[StartNode], FRotator(0, 0, 0));
 		trav->GMParent = this;
 		trav->StartNode = StartNode;
 		trav->EndNode = EndNode;
 		trav->RouteColor = this->GetContrastColor(i * 360 / TravelersCount);
+		trav->deltaZ = NodeRZ / 100.0f * (i + 1);
+		trav->Speed = TravelersSpeed;
+
+		NodesEmpty.RemoveAt(node);
 	}
 }
 
@@ -260,7 +275,7 @@ void AGridManager::Tick(float DeltaTime)
 
 	for (int x = 0; x < GridW * GridH; x++) {
 		for (int y = 0; y < x; y++) {
-			if (GMEdges[x][y]) GetWorld()->LineBatcher->DrawLine(GNodes[x], GNodes[y], GMEdgeColors[x][y], 0, 10.0f);
+			if (GMEdges[x][y]) GetWorld()->LineBatcher->DrawLine(GNodes[x], GNodes[y], GMEdgeColors[x][y], 0, 5.0f);
 		}
 	}
 

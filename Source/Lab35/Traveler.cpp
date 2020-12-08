@@ -36,6 +36,7 @@ ATraveler::ATraveler()
 	CurrentNode = 0;
 	StartNode = 0;
 	EndNode = 0;
+	deltaZ = 0;
 }
 
 void ATraveler::BeginPlay()
@@ -65,14 +66,15 @@ void ATraveler::Tick(float DeltaTime)
 	}
 
 	for (int i = 0; i < Route.Num() - 1; i++) {
-		FVector dir = Route[i] - Route[i + 1];
-		FRotator rot1(45, 0, 0);
-		FRotator rot2(-45, 0, 0);
-		FVector ar1 = rot1.RotateVector(dir.GetSafeNormal()) * 50.0f;
-		FVector ar2 = rot2.RotateVector(dir.GetSafeNormal()) * 50.0f;
-		GetWorld()->LineBatcher->DrawLine(Route[i], Route[i + 1], RouteColor, 0, 15.0f);
-		GetWorld()->LineBatcher->DrawLine(Route[i + 1] + ar1, Route[i + 1], RouteColor, 0, 15.0f);
-		GetWorld()->LineBatcher->DrawLine(Route[i + 1] + ar2, Route[i + 1], RouteColor, 0, 15.0f);
+		FVector dZ = FVector(0, 0, deltaZ);
+		FVector dir = (Route[i] - Route[i + 1]).GetSafeNormal();
+		FVector nDir = FVector::CrossProduct(dir, FVector::UpVector);
+		FVector lArr = (dir + nDir) * 50.0f;
+		FVector rArr = (dir - nDir) * 50.0f;
+
+		GetWorld()->LineBatcher->DrawLine(Route[i] + dZ, Route[i + 1] + dZ, RouteColor, 0, 15.0f);
+		GetWorld()->LineBatcher->DrawLine(Route[i + 1] + lArr + dZ, Route[i + 1] + dZ, RouteColor, 0, 15.0f);
+		GetWorld()->LineBatcher->DrawLine(Route[i + 1] + rArr + dZ, Route[i + 1] + dZ, RouteColor, 0, 15.0f);
 	}
 }
 

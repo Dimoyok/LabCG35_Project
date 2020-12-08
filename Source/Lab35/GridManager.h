@@ -40,6 +40,7 @@ public:
 	UPROPERTY(EditAnywhere)
 		float TravelersSpeed;
 
+
 protected:
 	virtual void BeginPlay() override;
 

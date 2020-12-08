@@ -35,6 +35,8 @@ public:
 	FColor RouteColor;
 	class AGridManager* GMParent;
 
+	float deltaZ;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
